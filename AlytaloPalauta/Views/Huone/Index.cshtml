@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AlytaloPalauta.Huoneet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Huoneiden lämpötilat</h2>
+
+<p>
+    @Html.ActionLink("Aseta uusi lämpötila", "Create",  new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HuoneenNimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HuoneenLampotila)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HuoneenTavoiteLampotila)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PVM)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HuoneenNimi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HuoneenLampotila)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HuoneenTavoiteLampotila)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PVM)
+        </td>
+        <td>
+            @Html.ActionLink("Muokkaa", "Edit", new { id = item.HuoneID }, new { @class = "btn btn-primary" }) |
+           @* @Html.ActionLink("Details", "Details", new { id=item.HuoneID }) |*@
+            @Html.ActionLink("Poista", "Delete", new { id=item.HuoneID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

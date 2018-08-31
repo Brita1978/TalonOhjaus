@@ -1,0 +1,50 @@
+﻿@model AlytaloPalauta.Saunat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Saunat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SaunanSijainti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaunanSijainti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaunaPaalla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaunaPaalla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaunanLampotila)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaunanLampotila)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PVM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PVM)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SaunaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

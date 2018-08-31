@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AlytaloPalauta.Valot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Valot</h2>
+
+<p>
+    @Html.ActionLink("Aseta uusi valontila", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ValonSijainti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValoPaalla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValonMaara)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PVM)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValonSijainti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValoPaalla)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValonMaara)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PVM)
+        </td>
+        <td>
+            @Html.ActionLink("Muokkaa", "Edit", new { id=item.ValoID }, new { @class = " btn btn-success" }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ValoID }) |*@
+            @Html.ActionLink("Poista", "Delete", new { id=item.ValoID }, new { @class = " btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

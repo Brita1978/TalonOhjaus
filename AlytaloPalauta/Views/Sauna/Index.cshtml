@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AlytaloPalauta.Saunat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Saunat</h2>
+
+<p>
+    @Html.ActionLink("Aseta uusi lämpötila", "Create", new { @class = "btn btn-default" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SaunanSijainti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaunaPaalla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SaunanLampotila)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PVM)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaunanSijainti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaunaPaalla)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaunanLampotila)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PVM)
+        </td>
+        <td>
+            @Html.ActionLink("Muokkaa", "Edit", new { id=item.SaunaID }, new { @class = " btn btn-success" }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.SaunaID }) |*@
+            @Html.ActionLink("Poista", "Delete", new { id=item.SaunaID }, new { @class = " btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

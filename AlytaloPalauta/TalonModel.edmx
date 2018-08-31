@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TaloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Huoneet">
+          <Key>
+            <PropertyRef Name="HuoneID" />
+          </Key>
+          <Property Name="HuoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HuoneenNimi" Type="nvarchar" MaxLength="255" />
+          <Property Name="HuoneenLampotila" Type="nvarchar" MaxLength="255" />
+          <Property Name="HuoneenTavoiteLampotila" Type="nvarchar" MaxLength="255" />
+          <Property Name="PVM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Saunat">
+          <Key>
+            <PropertyRef Name="SaunaID" />
+          </Key>
+          <Property Name="SaunaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaunanSijainti" Type="nvarchar" MaxLength="255" />
+          <Property Name="SaunaPaalla" Type="bit" />
+          <Property Name="SaunanLampotila" Type="nvarchar" MaxLength="255" />
+          <Property Name="PVM" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TalonTila">
+          <Key>
+            <PropertyRef Name="TalonTilaID" />
+          </Key>
+          <Property Name="TalonTilaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaloID" Type="int" />
+          <Property Name="TalonTavoiteLampotila" Type="nvarchar" MaxLength="255" />
+          <Property Name="TalonNykyLampotila" Type="nvarchar" MaxLength="255" />
+          <Property Name="PVM" Type="datetime" />
+          <Property Name="TaloHuone" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Valot">
+          <Key>
+            <PropertyRef Name="ValoID" />
+          </Key>
+          <Property Name="ValoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ValonSijainti" Type="nvarchar" MaxLength="255" />
+          <Property Name="ValoPaalla" Type="bit" />
+          <Property Name="ValonMaara" Type="nvarchar" MaxLength="50" />
+          <Property Name="PVM" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__TalonTila__TaloI__1273C1CD">
+          <End Role="Huoneet" Type="Self.Huoneet" Multiplicity="0..1" />
+          <End Role="TalonTila" Type="Self.TalonTila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Huoneet">
+              <PropertyRef Name="HuoneID" />
+            </Principal>
+            <Dependent Role="TalonTila">
+              <PropertyRef Name="TaloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaloModelStoreContainer">
+          <EntitySet Name="Huoneet" EntityType="Self.Huoneet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Saunat" EntityType="Self.Saunat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TalonTila" EntityType="Self.TalonTila" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valot" EntityType="Self.Valot" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TalonTila__TaloI__1273C1CD" Association="Self.FK__TalonTila__TaloI__1273C1CD">
+            <End Role="Huoneet" EntitySet="Huoneet" />
+            <End Role="TalonTila" EntitySet="TalonTila" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TaloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TalonEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Huoneet" EntityType="TaloModel.Huoneet" />
+          <EntitySet Name="Saunat" EntityType="TaloModel.Saunat" />
+          <EntitySet Name="TalonTila" EntityType="TaloModel.TalonTila" />
+          <EntitySet Name="Valot" EntityType="TaloModel.Valot" />
+          <AssociationSet Name="FK__TalonTila__TaloI__1273C1CD" Association="TaloModel.FK__TalonTila__TaloI__1273C1CD">
+            <End Role="Huoneet" EntitySet="Huoneet" />
+            <End Role="TalonTila" EntitySet="TalonTila" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Huoneet">
+          <Key>
+            <PropertyRef Name="HuoneID" />
+          </Key>
+          <Property Name="HuoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HuoneenNimi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HuoneenLampotila" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HuoneenTavoiteLampotila" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PVM" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TalonTila" Relationship="TaloModel.FK__TalonTila__TaloI__1273C1CD" FromRole="Huoneet" ToRole="TalonTila" />
+        </EntityType>
+        <EntityType Name="Saunat">
+          <Key>
+            <PropertyRef Name="SaunaID" />
+          </Key>
+          <Property Name="SaunaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaunanSijainti" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SaunaPaalla" Type="Boolean" />
+          <Property Name="SaunanLampotila" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PVM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TalonTila">
+          <Key>
+            <PropertyRef Name="TalonTilaID" />
+          </Key>
+          <Property Name="TalonTilaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaloID" Type="Int32" />
+          <Property Name="TalonTavoiteLampotila" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TalonNykyLampotila" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PVM" Type="DateTime" Precision="3" />
+          <Property Name="TaloHuone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Huoneet" Relationship="TaloModel.FK__TalonTila__TaloI__1273C1CD" FromRole="TalonTila" ToRole="Huoneet" />
+        </EntityType>
+        <EntityType Name="Valot">
+          <Key>
+            <PropertyRef Name="ValoID" />
+          </Key>
+          <Property Name="ValoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValonSijainti" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ValoPaalla" Type="Boolean" />
+          <Property Name="ValonMaara" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PVM" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK__TalonTila__TaloI__1273C1CD">
+          <End Type="TaloModel.Huoneet" Role="Huoneet" Multiplicity="0..1" />
+          <End Type="TaloModel.TalonTila" Role="TalonTila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Huoneet">
+              <PropertyRef Name="HuoneID" />
+            </Principal>
+            <Dependent Role="TalonTila">
+              <PropertyRef Name="TaloID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TaloModelStoreContainer" CdmEntityContainer="TalonEntities">
+          <EntitySetMapping Name="Huoneet">
+            <EntityTypeMapping TypeName="TaloModel.Huoneet">
+              <MappingFragment StoreEntitySet="Huoneet">
+                <ScalarProperty Name="PVM" ColumnName="PVM" />
+                <ScalarProperty Name="HuoneenTavoiteLampotila" ColumnName="HuoneenTavoiteLampotila" />
+                <ScalarProperty Name="HuoneenLampotila" ColumnName="HuoneenLampotila" />
+                <ScalarProperty Name="HuoneenNimi" ColumnName="HuoneenNimi" />
+                <ScalarProperty Name="HuoneID" ColumnName="HuoneID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saunat">
+            <EntityTypeMapping TypeName="TaloModel.Saunat">
+              <MappingFragment StoreEntitySet="Saunat">
+                <ScalarProperty Name="PVM" ColumnName="PVM" />
+                <ScalarProperty Name="SaunanLampotila" ColumnName="SaunanLampotila" />
+                <ScalarProperty Name="SaunaPaalla" ColumnName="SaunaPaalla" />
+                <ScalarProperty Name="SaunanSijainti" ColumnName="SaunanSijainti" />
+                <ScalarProperty Name="SaunaID" ColumnName="SaunaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TalonTila">
+            <EntityTypeMapping TypeName="TaloModel.TalonTila">
+              <MappingFragment StoreEntitySet="TalonTila">
+                <ScalarProperty Name="TaloHuone" ColumnName="TaloHuone" />
+                <ScalarProperty Name="PVM" ColumnName="PVM" />
+                <ScalarProperty Name="TalonNykyLampotila" ColumnName="TalonNykyLampotila" />
+                <ScalarProperty Name="TalonTavoiteLampotila" ColumnName="TalonTavoiteLampotila" />
+                <ScalarProperty Name="TaloID" ColumnName="TaloID" />
+                <ScalarProperty Name="TalonTilaID" ColumnName="TalonTilaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Valot">
+            <EntityTypeMapping TypeName="TaloModel.Valot">
+              <MappingFragment StoreEntitySet="Valot">
+                <ScalarProperty Name="PVM" ColumnName="PVM" />
+                <ScalarProperty Name="ValonMaara" ColumnName="ValonMaara" />
+                <ScalarProperty Name="ValoPaalla" ColumnName="ValoPaalla" />
+                <ScalarProperty Name="ValonSijainti" ColumnName="ValonSijainti" />
+                <ScalarProperty Name="ValoID" ColumnName="ValoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

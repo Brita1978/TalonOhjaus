@@ -1,0 +1,56 @@
+﻿@model AlytaloPalauta.Huoneet
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>poista</h2>
+
+<h3>Haluatko varmasti poistaa merkinnnän?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HuoneenNimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HuoneenNimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuoneenLampotila)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HuoneenLampotila)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuoneenTavoiteLampotila)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HuoneenTavoiteLampotila)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PVM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PVM)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Takaisin listaan", "Index", new { @class = "btn btn-primary" } )
+        </div>
+    }
+</div>
